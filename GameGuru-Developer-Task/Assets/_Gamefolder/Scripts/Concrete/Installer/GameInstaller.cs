@@ -1,7 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using GameGuruDevChallange.Managers;
+using Zenject;
 
-public class GameInstaller : MonoBehaviour
+namespace GameGuruDevChallange.Installers
 {
+    public class GameInstaller : MonoInstaller
+    {
+        public override void InstallBindings()
+        {
+            Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
+        }
+    }
 }

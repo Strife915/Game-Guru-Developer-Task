@@ -12,7 +12,7 @@ namespace GameGuruDevChallange.Uis
 
         void Start()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            _canvasGroup = GetComponentInParent<CanvasGroup>();
         }
 
         protected override void HandleOnButtonClicked()
