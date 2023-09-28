@@ -1,5 +1,8 @@
+using UnityEngine;
+
 public interface IMover
 {
-    void Move();
+    IMoverAttributes MoverAttributes { get; }
+    void Move(Transform transformToMove, Vector3 targetPosition);
     void StopMovement();
 }
