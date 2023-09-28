@@ -1,14 +1,33 @@
+using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
-public class StackMover :  IMover
+namespace GameGuruDevChallange.Mover
 {
-    public void Move()
+    public class StackMover : IMover
     {
-        Debug.Log("Moving");   
-    }
+        Tween _moveTween;
+        public IMoverAttributes MoverAttributes { get; private set; }
 
-    public void StopMovement()
-    {
-        Debug.Log("Stop movement");
+        [Inject]
+        public StackMover(IMoverAttributes moverAttributes)
+        {
+            MoverAttributes = moverAttributes;
+        }
+
+
+        public void Move(Transform transformToMove, Vector3 targetPosition)
+        {
+            _moveTween?.Kill();
+
+            _moveTween = transformToMove.DOMoveX(targetPosition.x, MoverAttributes.MoveSpeed)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetEase(Ease.Linear);
+        }
+
+        public void StopMovement()
+        {
+            _moveTween?.Kill();
+        }
     }
 }
