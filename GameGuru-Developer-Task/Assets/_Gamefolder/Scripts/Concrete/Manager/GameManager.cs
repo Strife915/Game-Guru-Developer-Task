@@ -8,7 +8,7 @@ namespace GameGuruDevChallange.Managers
     {
         [Inject] ISpawner _blockSpawner;
 
-        void StartGame()
+        public void StartGame()
         {
             _blockSpawner.Spawn();
         }
