@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -6,10 +5,14 @@ public class StackController : MonoBehaviour
 {
     [Inject] IMover _mover;
 
-    IEnumerator Start()
+    void Start()
     {
-        _mover.Move();
-        yield return new WaitForSeconds(2f);
-        _mover.StopMovement();
+        Vector3 currentPosition = transform.position;
+        bool isLeftBlock = currentPosition.x < 0;
+        Vector3 targetPosition = currentPosition;
+
+        targetPosition.x = isLeftBlock ? 10f : -10f;
+
+        _mover.Move(transform, targetPosition);
     }
 }
