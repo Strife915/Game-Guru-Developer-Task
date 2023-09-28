@@ -4,6 +4,7 @@ using Zenject;
 public class StackController : MonoBehaviour
 {
     [Inject] IMover _mover;
+    public IMover Mover => _mover;
 
     void Start()
     {
