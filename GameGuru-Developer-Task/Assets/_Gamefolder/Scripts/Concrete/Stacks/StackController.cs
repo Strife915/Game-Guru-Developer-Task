@@ -1,9 +1,18 @@
+using GameGuruDevChallange.Mover;
+using GameGuruDevChallange.ScriptableObjects;
 using UnityEngine;
 
 public class StackController : MonoBehaviour
 {
+    [SerializeField] MoverAttributesSo _moverAttributesSo;
+    IMoverAttributes _moverAttributes => _moverAttributesSo;
     IMover _mover;
     public IMover Mover => _mover;
+
+    void Awake()
+    {
+        _mover = new StackMover(_moverAttributesSo);
+    }
 
     void Start()
     {

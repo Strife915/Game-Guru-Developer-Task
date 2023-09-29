@@ -1,5 +1,5 @@
-﻿using System;
-using GameGuruDevChallange.Abstract.Spawners;
+﻿using GameGuruDevChallange.Abstract.Spawners;
+using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Spawners
@@ -8,11 +8,13 @@ namespace GameGuruDevChallange.Spawners
     {
         [SerializeField] GameObject _blockPrefab;
         [SerializeField] float _offset = 10f;
-        [SerializeField] Transform _spawnPoint;
+        [SerializeField] Transform _spawnPoint, _firstBlockTransform;
+        Transform _lastBlockTransform;
         float _prefabLength;
         bool _isRight;
+        public int SpawnCount { get; private set; }
 
-        void Start()
+        void Awake()
         {
             var prefabRenderer = _blockPrefab.GetComponentInChildren<MeshRenderer>();
             _prefabLength = prefabRenderer != null ? prefabRenderer.bounds.size.z : 0f;
@@ -30,10 +32,19 @@ namespace GameGuruDevChallange.Spawners
 
                 _spawnPoint.position = forwardSpawnPosition;
                 StackController block = Instantiate(_blockPrefab).GetComponent<StackController>();
+                if (_lastBlockTransform == null)
+                    ClickFacade.Instance.SetSplitManagerBlocks(_firstBlockTransform, block.transform);
+                else
+                {
+                    ClickFacade.Instance.SetSplitManagerBlocks(_lastBlockTransform, block.transform);
+                }
+
                 block.transform.position = forwardSpawnPosition;
 
                 _spawnPoint.position = new Vector3(0, 0, _spawnPoint.position.z);
                 _isRight = !_isRight;
+                _lastBlockTransform = block.transform;
+                SpawnCount++;
             }
             else
             {

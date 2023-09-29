@@ -1,15 +1,22 @@
 using GameGuruDevChallange.Abstract.Spawners;
+using GameGuruDevChallange.Patterns.Facade;
+using RoddGames.Abstracts.Patterns;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingletonMonoDestroy<GameManager>
     {
-        ISpawner _blockSpawner;
+        [SerializeField] GameObject _clickFacadeGameObject;
+
+        void Awake()
+        {
+            SetSingleton(this);
+        }
 
         public void StartGame()
         {
-            _blockSpawner.Spawn();
+            _clickFacadeGameObject.SetActive(true);
         }
     }
 }

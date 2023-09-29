@@ -16,6 +16,7 @@ namespace GameGuruDevChallange.Uis
         protected override void HandleOnButtonClicked()
         {
             CloseCanvas();
+            GameManager.Instance.StartGame();
         }
 
         void CloseCanvas()

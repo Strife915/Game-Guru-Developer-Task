@@ -1,4 +1,8 @@
+using UnityEngine;
+
 public interface IBlockSplitManager
 {
-    void CalculateForfeit(float staticBlockPos, float dynamicBlockPos);
+    Transform LastBlock { get; set; }
+    Transform MovingBlock { get; set; }
+    void CalculateForfeit();
 }
