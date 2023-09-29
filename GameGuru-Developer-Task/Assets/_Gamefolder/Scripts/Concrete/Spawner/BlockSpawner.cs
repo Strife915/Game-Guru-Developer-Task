@@ -1,22 +1,19 @@
-﻿using GameGuruDevChallange.Abstract.Spawners;
+﻿using System;
+using GameGuruDevChallange.Abstract.Spawners;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Spawners
 {
-    public class StackSpawner : ISpawner
+    public class BlockSpawner : MonoBehaviour, ISpawner
     {
-        readonly GameObject _blockPrefab;
-        readonly float _offset = 10f;
-        readonly float _prefabLength;
-        readonly Transform _spawnPoint;
+        [SerializeField] GameObject _blockPrefab;
+        [SerializeField] float _offset = 10f;
+        [SerializeField] Transform _spawnPoint;
+        float _prefabLength;
         bool _isRight;
-        float _staticCubePosition = 0;
 
-        public StackSpawner(GameObject gameObject, Transform spawnPoint, float offset)
+        void Start()
         {
-            _spawnPoint = spawnPoint;
-            _blockPrefab = gameObject;
-            _offset = offset;
             var prefabRenderer = _blockPrefab.GetComponentInChildren<MeshRenderer>();
             _prefabLength = prefabRenderer != null ? prefabRenderer.bounds.size.z : 0f;
         }
@@ -32,7 +29,7 @@ namespace GameGuruDevChallange.Spawners
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
                 _spawnPoint.position = forwardSpawnPosition;
-                StackController block = GameObject.Instantiate(_blockPrefab).GetComponent<StackController>();
+                StackController block = Instantiate(_blockPrefab).GetComponent<StackController>();
                 block.transform.position = forwardSpawnPosition;
 
                 _spawnPoint.position = new Vector3(0, 0, _spawnPoint.position.z);
