@@ -11,10 +11,9 @@ namespace GameGuruDevChallange.Patterns.Facade
     {
         [SerializeField] BlockSpawner _concreteBlockSpawner;
         ISpawner _blockSpawner => _concreteBlockSpawner;
-
         IBlockSplitManager _blockSplitManager;
-
         IBlockStoper _blockStoper;
+        IBlockSizeHolder _blockSizeHolder;
 
 
         void Awake()
@@ -22,6 +21,7 @@ namespace GameGuruDevChallange.Patterns.Facade
             SetSingleton(this);
             _blockSplitManager = new BlockSplitManager();
             _blockStoper = new BlockStoper();
+            _blockSizeHolder = new BlockSizeHolder();
         }
 
         void OnEnable()
@@ -48,6 +48,16 @@ namespace GameGuruDevChallange.Patterns.Facade
         public void SetBlockStoperBlock(IMover mover)
         {
             _blockStoper.MovingBlock = mover;
+        }
+
+        public void SetCurrentBlockSize(float currentScale)
+        {
+            _blockSizeHolder.CurrentScale = currentScale;
+        }
+
+        public float GetCurrentBlockSize()
+        {
+            return _blockSizeHolder.CurrentScale;
         }
 
         [Button]

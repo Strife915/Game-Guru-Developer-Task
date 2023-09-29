@@ -3,7 +3,7 @@ using GameGuruDevChallange.Mover;
 using GameGuruDevChallange.ScriptableObjects;
 using UnityEngine;
 
-public class StackController : MonoBehaviour
+public class BlockController : MonoBehaviour
 {
     [SerializeField] MoverAttributesSo _moverAttributesSo;
     IMoverAttributes _moverAttributes => _moverAttributesSo;

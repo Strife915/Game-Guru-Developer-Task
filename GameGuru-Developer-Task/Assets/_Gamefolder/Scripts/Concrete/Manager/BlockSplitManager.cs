@@ -1,3 +1,4 @@
+using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
 public class BlockSplitManager : IBlockSplitManager
@@ -37,5 +38,6 @@ public class BlockSplitManager : IBlockSplitManager
         }
 
         MovingBlock.transform.position = new Vector3(newPositionX / 2, position2.y, position2.z);
+        ClickFacade.Instance.SetCurrentBlockSize(newScale2.x);
     }
 }

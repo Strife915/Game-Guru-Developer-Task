@@ -31,7 +31,13 @@ namespace GameGuruDevChallange.Spawners
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
                 _spawnPoint.position = forwardSpawnPosition;
-                StackController block = Instantiate(_blockPrefab).GetComponent<StackController>();
+                BlockController block = Instantiate(_blockPrefab).GetComponent<BlockController>();
+                if (SpawnCount > 0)
+                {
+                    float lastBlockScale = ClickFacade.Instance.GetCurrentBlockSize();
+                    block.transform.localScale = new Vector3(lastBlockScale, block.transform.localScale.y, block.transform.localScale.z);
+                }
+
                 ClickFacade.Instance.SetBlockStoperBlock(block.Mover);
                 if (_lastBlockTransform == null)
                     ClickFacade.Instance.SetSplitManagerBlocks(_firstBlockTransform, block.transform);
