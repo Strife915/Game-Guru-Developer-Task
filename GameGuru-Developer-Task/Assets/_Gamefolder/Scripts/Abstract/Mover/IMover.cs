@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface IMover
+namespace GameGuruDevChallange.Abstract.Movers
 {
-    IMoverAttributes MoverAttributes { get; }
-    void Move(Transform transformToMove, Vector3 targetPosition);
-    void StopMovement();
+    public interface IMover
+    {
+        IMoverAttributes MoverAttributes { get; }
+        void Move(Transform transformToMove, Vector3 targetPosition);
+        void StopMovement();
+    }
 }

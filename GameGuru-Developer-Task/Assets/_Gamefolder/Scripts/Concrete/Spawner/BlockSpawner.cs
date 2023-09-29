@@ -32,6 +32,7 @@ namespace GameGuruDevChallange.Spawners
 
                 _spawnPoint.position = forwardSpawnPosition;
                 StackController block = Instantiate(_blockPrefab).GetComponent<StackController>();
+                ClickFacade.Instance.SetBlockStoperBlock(block.Mover);
                 if (_lastBlockTransform == null)
                     ClickFacade.Instance.SetSplitManagerBlocks(_firstBlockTransform, block.transform);
                 else

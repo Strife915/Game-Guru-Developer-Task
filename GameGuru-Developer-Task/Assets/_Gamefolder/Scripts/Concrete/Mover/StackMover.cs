@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameGuruDevChallange.Abstract.Movers;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Mover

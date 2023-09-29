@@ -1,4 +1,5 @@
 using GameGuruDevChallange.Abstract.Managers;
+using GameGuruDevChallange.Abstract.Movers;
 
 namespace GameGuruDevChallange.Managers
 {

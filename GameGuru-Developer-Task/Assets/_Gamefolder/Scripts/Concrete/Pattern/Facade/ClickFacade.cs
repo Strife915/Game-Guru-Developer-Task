@@ -1,3 +1,4 @@
+using GameGuruDevChallange.Abstract.Movers;
 using GameGuruDevChallange.Abstract.Spawners;
 using GameGuruDevChallange.Spawners;
 using RoddGames.Abstracts.Patterns;
@@ -10,13 +11,17 @@ namespace GameGuruDevChallange.Patterns.Facade
     {
         [SerializeField] BlockSpawner _concreteBlockSpawner;
         ISpawner _blockSpawner => _concreteBlockSpawner;
+
         IBlockSplitManager _blockSplitManager;
-        public IBlockSplitManager BlockSplitManager => _blockSplitManager;
+
+        IBlockStoper _blockStoper;
+
 
         void Awake()
         {
             SetSingleton(this);
             _blockSplitManager = new BlockSplitManager();
+            _blockStoper = new BlockStoper();
         }
 
         void OnEnable()
@@ -28,6 +33,7 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             if (Input.GetMouseButtonDown(0))
             {
+                _blockStoper.Stop();
                 _blockSplitManager.CalculateForfeit();
                 _blockSpawner.Spawn();
             }
@@ -37,6 +43,11 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             _blockSplitManager.LastBlock = lastBlock;
             _blockSplitManager.MovingBlock = movingBlock;
+        }
+
+        public void SetBlockStoperBlock(IMover mover)
+        {
+            _blockStoper.MovingBlock = mover;
         }
 
         [Button]
