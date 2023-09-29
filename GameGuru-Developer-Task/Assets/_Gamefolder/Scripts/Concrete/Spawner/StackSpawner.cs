@@ -1,23 +1,17 @@
-﻿using GameGuruDevChallange.Abstract.Managers;
-using GameGuruDevChallange.Abstract.Spawners;
-using GameGuruDevChallange.Factories;
+﻿using GameGuruDevChallange.Abstract.Spawners;
 using UnityEngine;
-using Zenject;
 
 namespace GameGuruDevChallange.Spawners
 {
     public class StackSpawner : ISpawner
     {
-        [Inject] readonly BlockFactory _blockFactory;
-        [Inject] readonly IClickManager _clickManager;
         readonly GameObject _blockPrefab;
         readonly float _offset = 10f;
         readonly float _prefabLength;
         readonly Transform _spawnPoint;
         bool _isRight;
-        float _staticCubePosition = 0, _dynamicCubePosition;
+        float _staticCubePosition = 0;
 
-        [Inject]
         public StackSpawner(GameObject gameObject, Transform spawnPoint, float offset)
         {
             _spawnPoint = spawnPoint;
@@ -38,8 +32,7 @@ namespace GameGuruDevChallange.Spawners
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
                 _spawnPoint.position = forwardSpawnPosition;
-                StackController block = _blockFactory.Create();
-                _clickManager.LastBlock = block.Mover;
+                StackController block = GameObject.Instantiate(_blockPrefab).GetComponent<StackController>();
                 block.transform.position = forwardSpawnPosition;
 
                 _spawnPoint.position = new Vector3(0, 0, _spawnPoint.position.z);

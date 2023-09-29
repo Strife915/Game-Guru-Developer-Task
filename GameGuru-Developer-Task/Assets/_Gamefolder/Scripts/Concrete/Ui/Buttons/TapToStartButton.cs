@@ -1,13 +1,11 @@
 using GameGuruDevChallange.Managers;
 using RoddGames.Uis;
 using UnityEngine;
-using Zenject;
 
 namespace GameGuruDevChallange.Uis
 {
     public class TapToStartButton : BaseButton
     {
-        [Inject] GameManager _gameManager;
         CanvasGroup _canvasGroup;
 
         void Start()
@@ -17,7 +15,6 @@ namespace GameGuruDevChallange.Uis
 
         protected override void HandleOnButtonClicked()
         {
-            _gameManager.StartGame();
             CloseCanvas();
         }
 

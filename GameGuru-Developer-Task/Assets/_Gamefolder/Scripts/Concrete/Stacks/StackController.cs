@@ -1,9 +1,8 @@
 using UnityEngine;
-using Zenject;
 
 public class StackController : MonoBehaviour
 {
-    [Inject] IMover _mover;
+    IMover _mover;
     public IMover Mover => _mover;
 
     void Start()

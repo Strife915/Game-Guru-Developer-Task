@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using Zenject;
 
 namespace GameGuruDevChallange.Mover
 {
@@ -9,7 +8,6 @@ namespace GameGuruDevChallange.Mover
         Tween _moveTween;
         public IMoverAttributes MoverAttributes { get; private set; }
 
-        [Inject]
         public StackMover(IMoverAttributes moverAttributes)
         {
             MoverAttributes = moverAttributes;

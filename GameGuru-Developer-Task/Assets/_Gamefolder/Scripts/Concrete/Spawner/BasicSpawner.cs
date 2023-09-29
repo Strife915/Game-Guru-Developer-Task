@@ -1,6 +1,5 @@
 using GameGuruDevChallange.Abstract.Spawners;
 using UnityEngine;
-using Zenject;
 
 namespace GameGuruDevChallange.Spawners
 {
@@ -9,7 +8,6 @@ namespace GameGuruDevChallange.Spawners
         readonly GameObject _blockPrefab;
         readonly Transform _spawnPoint;
 
-        [Inject]
         public BasicSpawner(GameObject blockPrefab, Transform spawnPoint)
         {
             _blockPrefab = blockPrefab;
