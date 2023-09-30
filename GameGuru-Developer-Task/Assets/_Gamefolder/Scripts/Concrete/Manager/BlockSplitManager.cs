@@ -1,3 +1,4 @@
+using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class BlockSplitManager : IBlockSplitManager
 {
     public Transform LastBlock { get; set; }
     public Transform MovingBlock { get; set; }
-
+    float _tolarance = .3f;
 
     public void CalculateForfeit()
     {
@@ -14,30 +15,36 @@ public class BlockSplitManager : IBlockSplitManager
 
     void SplitBlock()
     {
-        Vector3 size1 = LastBlock.GetComponentInChildren<Renderer>().bounds.size;
-        Vector3 size2 = MovingBlock.GetComponentInChildren<Renderer>().bounds.size;
+        float overflowAmount = MovingBlock.position.x - LastBlock.position.x;
+        if (Mathf.Abs(overflowAmount) > LastBlock.localScale.x)
+        {
+            GameManager.Instance.EndGame();
 
-        Vector3 position1 = LastBlock.transform.position;
-        Vector3 position2 = MovingBlock.transform.position;
+            return;
+        }
 
-        float overflowAmount = (position2.x + (size2.x / 2)) - (position1.x + (size1.x / 2));
+        if (Mathf.Abs(overflowAmount) < _tolarance)
+        {
+            MovingBlock.position = new Vector3(LastBlock.position.x, LastBlock.position.y, MovingBlock.position.z);
+            ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+            return;
+        }
 
+        Debug.Log("Last object pos " + LastBlock.position);
+        Debug.Log("Moving object pos " + MovingBlock.position);
         Debug.Log("Overflow Amount: " + overflowAmount);
 
-        Vector3 newScale2 = MovingBlock.transform.localScale - new Vector3(Mathf.Abs(overflowAmount), 0, 0);
-        MovingBlock.transform.localScale = newScale2;
+        float newSize = LastBlock.localScale.x - Mathf.Abs(overflowAmount);
+        float newPositionX = LastBlock.transform.position.x + (overflowAmount / 2);
 
-        float newPositionX = position1.x;
-        if (overflowAmount > 0)
-        {
-            newPositionX += (size1.x / 2) + (newScale2.x / 2);
-        }
-        else
-        {
-            newPositionX -= (size1.x / 2) + (newScale2.x / 2);
-        }
 
-        MovingBlock.transform.position = new Vector3(newPositionX / 2, position2.y, position2.z);
-        ClickFacade.Instance.SetCurrentBlockSize(newScale2.x);
+        MovingBlock.localScale = new Vector3(Mathf.Abs(newSize), MovingBlock.localScale.y, MovingBlock.localScale.z);
+        MovingBlock.position = new Vector3(newPositionX, MovingBlock.position.y, MovingBlock.position.z);
+
+        ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+        if (MovingBlock.localScale.x < 0.2f)
+        {
+            GameManager.Instance.EndGame();
+        }
     }
 }

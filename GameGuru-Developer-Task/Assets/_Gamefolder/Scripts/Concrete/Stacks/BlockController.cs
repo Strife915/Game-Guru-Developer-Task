@@ -21,7 +21,7 @@ public class BlockController : MonoBehaviour
         bool isLeftBlock = currentPosition.x < 0;
         Vector3 targetPosition = currentPosition;
 
-        targetPosition.x = isLeftBlock ? 10f : -10f;
+        targetPosition.x = isLeftBlock ? 10 : -10;
 
         _mover.Move(transform, targetPosition);
     }

@@ -1,5 +1,6 @@
 using GameGuruDevChallange.Abstract.Movers;
 using GameGuruDevChallange.Abstract.Spawners;
+using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Spawners;
 using RoddGames.Abstracts.Patterns;
 using Sirenix.OdinInspector;
@@ -35,7 +36,8 @@ namespace GameGuruDevChallange.Patterns.Facade
             {
                 _blockStoper.Stop();
                 _blockSplitManager.CalculateForfeit();
-                _blockSpawner.Spawn();
+                if (!GameManager.Instance.IsGameEnd)
+                    _blockSpawner.Spawn();
             }
         }
 
