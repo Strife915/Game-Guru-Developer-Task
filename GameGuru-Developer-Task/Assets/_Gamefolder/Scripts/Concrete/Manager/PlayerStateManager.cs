@@ -13,13 +13,13 @@ namespace GameGuruDevChallange.Managers
         IState _playerCelebrateState;
         IState _playerFallState;
 
-        public PlayerStateManager(Animator playerAnimator, IMoverAttributes moverAttributes, Transform playerMoveTarget, Transform playerTransform)
+        public PlayerStateManager(Animator playerAnimator, IMoverAttributes moverAttributes, Transform playerMoveTarget, Transform playerTransform, Rigidbody rigidbody)
         {
             _stateMachine = new StateMachine();
-            _playerIdleState = new PlayerIdleState(playerAnimator, "Idle");
+            _playerIdleState = new PlayerIdleState(playerAnimator, "Idle", this);
             _playerRunState = new PlayerRunState(playerAnimator, "Run", moverAttributes, playerMoveTarget, playerTransform);
             _playerCelebrateState = new PlayerCelebrateState(playerAnimator, "Celebrate");
-            _playerFallState = new PlayerFallState(playerAnimator, "Run");
+            _playerFallState = new PlayerFallState(playerAnimator, "Run", rigidbody);
             _stateMachine.ChangeState(_playerIdleState);
         }
 
@@ -36,6 +36,11 @@ namespace GameGuruDevChallange.Managers
         public void ChangePlayerToRun()
         {
             _stateMachine.ChangeState(_playerRunState);
+        }
+
+        public void ChangePlayerToFall()
+        {
+            _stateMachine.ChangeState(_playerFallState);
         }
     }
 }

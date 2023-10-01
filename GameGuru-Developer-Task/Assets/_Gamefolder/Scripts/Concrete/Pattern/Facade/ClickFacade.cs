@@ -37,15 +37,22 @@ namespace GameGuruDevChallange.Patterns.Facade
             {
                 _blockStoper.Stop();
                 _blockSplitManager.CalculateForfeit();
-                PlayerFacade.Instance.ChangePlayerToRun();
                 if (!GameManager.Instance.IsGameEnd)
+                {
+                    PlayerFacade.Instance.ChangePlayerToRun();
                     _blockSpawner.Spawn();
+                }
             }
         }
 
         public void SetPlayerNewMoveTarget(Vector3 newPosition)
         {
             _playerMoveTarget.ChangePosition(newPosition);
+        }
+
+        public void SendPlayerToDeath()
+        {
+            //PlayerFacade.Instance._playerMoveTarget.SendPlayerToDeath();
         }
 
         public void SetSplitManagerBlocks(Transform lastBlock, Transform movingBlock)

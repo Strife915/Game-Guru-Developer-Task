@@ -8,6 +8,7 @@ namespace GameGuruDevChallange.Patterns.Facade
     public class PlayerFacade : SingletonMonoDestroy<PlayerFacade>
     {
         [SerializeField] Animator _playerAnimator;
+        [SerializeField] Rigidbody _rigidbody;
         [SerializeField] MoverAttributesSo _moverAttributesSo;
         [SerializeField] Transform _playerMoveTarget;
         PlayerStateManager _stateManager;
@@ -17,7 +18,7 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             SetSingleton(this);
             GetReference();
-            _stateManager = new PlayerStateManager(_playerAnimator, _moverAttributes, _playerMoveTarget, transform);
+            _stateManager = new PlayerStateManager(_playerAnimator, _moverAttributes, _playerMoveTarget, transform, _rigidbody);
         }
 
         public void ChangePlayerToIdleState()
@@ -29,6 +30,7 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             _stateManager.ChangePlayerToRun();
         }
+
 
         void Update()
         {
@@ -44,6 +46,8 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             if (_playerAnimator == null)
                 _playerAnimator = GetComponentInChildren<Animator>();
+            if (_rigidbody == null)
+                _rigidbody = GetComponent<Rigidbody>();
         }
     }
 }

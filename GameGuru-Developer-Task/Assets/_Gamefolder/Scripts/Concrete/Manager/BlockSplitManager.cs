@@ -12,19 +12,13 @@ public class BlockSplitManager : IBlockSplitManager
     {
         float overflowAmount = MovingBlock.position.x - LastBlock.position.x;
         float direction = overflowAmount > 0 ? 1f : -1f;
-        SplitBlock(overflowAmount, direction);
-    }
-
-    void SplitBlock(float overFlow, float direction)
-    {
-        if (Mathf.Abs(overFlow) > LastBlock.localScale.x)
+        if (Mathf.Abs(overflowAmount) > LastBlock.localScale.x)
         {
             GameManager.Instance.EndGame();
-
             return;
         }
 
-        if (Mathf.Abs(overFlow) < _tolarance)
+        if (Mathf.Abs(overflowAmount) < _tolarance)
         {
             MovingBlock.position = new Vector3(LastBlock.position.x, LastBlock.position.y, MovingBlock.position.z);
             ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
@@ -32,6 +26,11 @@ public class BlockSplitManager : IBlockSplitManager
             return;
         }
 
+        SplitBlock(overflowAmount, direction);
+    }
+
+    void SplitBlock(float overFlow, float direction)
+    {
         float newSize = LastBlock.localScale.x - Mathf.Abs(overFlow);
         float fallingBlockSize = MovingBlock.localScale.x - newSize;
         float newPositionX = LastBlock.transform.position.x + (overFlow / 2);

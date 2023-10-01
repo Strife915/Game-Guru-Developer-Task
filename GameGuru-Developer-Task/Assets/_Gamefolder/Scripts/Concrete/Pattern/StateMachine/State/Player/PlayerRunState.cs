@@ -1,4 +1,5 @@
 ﻿using GameGuruDevChallange.Abstract.Movers;
+using GameGuruDevChallange.Managers;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns.StateMachine
@@ -18,12 +19,6 @@ namespace GameGuruDevChallange.Patterns.StateMachine
         public override void Update()
         {
             _mover.Move(_playerTransform, _playerMoveTarget.position);
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-            _mover.StopMovement();
         }
     }
 }
