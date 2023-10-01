@@ -1,3 +1,4 @@
+using GameGuruDevChallange.Patterns.Facade;
 using RoddGames.Abstracts.Patterns;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace GameGuruDevChallange.Managers
         public void StartGame()
         {
             _clickFacadeGameObject.SetActive(true);
+            PlayerFacade.Instance.ChangePlayerToRun();
         }
 
         public void EndGame()

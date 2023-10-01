@@ -8,4 +8,9 @@ public class PlayerMoveTarget : MonoBehaviour
         if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
         playerFacade.ChangePlayerToIdleState();
     }
+
+    public void ChangePosition(Vector3 newPosition)
+    {
+        transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+    }
 }

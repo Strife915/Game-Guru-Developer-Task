@@ -11,6 +11,7 @@ namespace GameGuruDevChallange.Patterns.Facade
     public class ClickFacade : SingletonMonoDestroy<ClickFacade>
     {
         [SerializeField] BlockSpawner _concreteBlockSpawner;
+        [SerializeField] PlayerMoveTarget _playerMoveTarget;
         ISpawner _blockSpawner => _concreteBlockSpawner;
         IBlockSplitManager _blockSplitManager;
         IBlockStoper _blockStoper;
@@ -40,6 +41,11 @@ namespace GameGuruDevChallange.Patterns.Facade
                 if (!GameManager.Instance.IsGameEnd)
                     _blockSpawner.Spawn();
             }
+        }
+
+        public void SetPlayerNewMoveTarget(Vector3 newPosition)
+        {
+            _playerMoveTarget.ChangePosition(newPosition);
         }
 
         public void SetSplitManagerBlocks(Transform lastBlock, Transform movingBlock)

@@ -28,6 +28,7 @@ public class BlockSplitManager : IBlockSplitManager
         {
             MovingBlock.position = new Vector3(LastBlock.position.x, LastBlock.position.y, MovingBlock.position.z);
             ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+            ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
             return;
         }
 
@@ -43,6 +44,7 @@ public class BlockSplitManager : IBlockSplitManager
         float fallingBlockXPosition = cubeEdge + fallingBlockSize / 2f * direction;
         SpawnDropCube(fallingBlockXPosition, fallingBlockSize);
         ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+        ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
         if (MovingBlock.localScale.x < 0.2f)
         {
             GameManager.Instance.EndGame();
