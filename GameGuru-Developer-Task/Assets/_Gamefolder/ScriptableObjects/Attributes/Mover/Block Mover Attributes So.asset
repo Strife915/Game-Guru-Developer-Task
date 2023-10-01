@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce3b3b79ed3a3d643b588884f453e788, type: 3}
-  m_Name: Mover Attributes So
+  m_Name: Block Mover Attributes So
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
+  _moveSpeed: 1.5

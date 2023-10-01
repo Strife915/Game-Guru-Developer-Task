@@ -36,6 +36,7 @@ namespace GameGuruDevChallange.Patterns.Facade
             {
                 _blockStoper.Stop();
                 _blockSplitManager.CalculateForfeit();
+                PlayerFacade.Instance.ChangePlayerToRun();
                 if (!GameManager.Instance.IsGameEnd)
                     _blockSpawner.Spawn();
             }
