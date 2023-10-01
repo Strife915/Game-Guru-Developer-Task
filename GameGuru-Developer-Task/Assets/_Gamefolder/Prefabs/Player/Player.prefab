@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chibi
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: c69fba8e89651054a8e17e8e58f2b3d4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d1325157cadfd434481e57c42d1558a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c69fba8e89651054a8e17e8e58f2b3d4, type: 3}
 --- !u!4 &1402775665220604184 stripped
