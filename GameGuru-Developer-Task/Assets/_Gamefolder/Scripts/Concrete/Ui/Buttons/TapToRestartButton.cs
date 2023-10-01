@@ -1,16 +1,16 @@
-using GameGuruDevChallange.Managers;
+﻿using GameGuruDevChallange.Managers;
 using RoddGames.Uis;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Uis
 {
-    public class TapToStartButton : BaseButton
+    public class TapToRestartButton : BaseButton
     {
         [SerializeField] CanvasGroupContoller _canvasGroupContoller;
 
         protected override void HandleOnButtonClicked()
         {
-            GameManager.Instance.StartGame();
+            GameManager.Instance.RestartGame();
             _canvasGroupContoller.CloseCanvas();
         }
     }

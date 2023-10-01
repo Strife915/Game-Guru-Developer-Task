@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameGuruDevChallange.Managers;
+using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns.StateMachine
 {
@@ -14,8 +15,8 @@ namespace GameGuruDevChallange.Patterns.StateMachine
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Falling");
             PushPlayer();
+            GameManager.Instance.PublishGameEnd();
         }
 
         void PushPlayer()

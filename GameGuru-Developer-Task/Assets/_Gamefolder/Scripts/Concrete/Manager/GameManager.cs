@@ -1,5 +1,6 @@
 using GameGuruDevChallange.Patterns.Facade;
 using RoddGames.Abstracts.Patterns;
+using RoddGames.ScriptableObjects;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Managers
@@ -7,6 +8,7 @@ namespace GameGuruDevChallange.Managers
     public class GameManager : SingletonMonoDestroy<GameManager>
     {
         [SerializeField] GameObject _clickFacadeGameObject;
+        [SerializeField] GameEvent _gameRestartEvent, _gameEndEvent;
         public bool IsGameEnd { get; private set; }
 
         void Awake()
@@ -24,7 +26,16 @@ namespace GameGuruDevChallange.Managers
         {
             _clickFacadeGameObject.SetActive(false);
             IsGameEnd = true;
-            Debug.Log("Game end");
+        }
+
+        public void PublishGameEnd()
+        {
+            _gameEndEvent.InvokeEvents();
+        }
+
+        public void RestartGame()
+        {
+            _gameRestartEvent.InvokeEvents();
         }
     }
 }
