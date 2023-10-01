@@ -19,7 +19,7 @@ namespace GameGuruDevChallange.Managers
             _playerIdleState = new PlayerIdleState(playerAnimator, "Idle", this);
             _playerRunState = new PlayerRunState(playerAnimator, "Run", moverAttributes, playerMoveTarget, playerTransform);
             _playerCelebrateState = new PlayerCelebrateState(playerAnimator, "Celebrate");
-            _playerFallState = new PlayerFallState(playerAnimator, "Run", rigidbody);
+            _playerFallState = new PlayerFallState(playerAnimator, "Fall", rigidbody);
             _stateMachine.ChangeState(_playerIdleState);
         }
 
