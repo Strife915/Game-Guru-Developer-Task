@@ -1,4 +1,5 @@
 using GameGuruDevChallange.Abstract.Movers;
+using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Mover;
 using GameGuruDevChallange.ScriptableObjects;
 using UnityEngine;
@@ -6,13 +7,20 @@ using UnityEngine;
 public class BlockController : MonoBehaviour
 {
     [SerializeField] MoverAttributesSo _moverAttributesSo;
+    MeshRenderer _meshRenderer;
     IMoverAttributes _moverAttributes => _moverAttributesSo;
     IMover _mover;
     public IMover Mover => _mover;
 
     void Awake()
     {
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _mover = new StackMover(_moverAttributesSo);
+    }
+
+    void OnEnable()
+    {
+        _meshRenderer.material = BlockMaterialManager.Instance.GetRandomMaterial();
     }
 
     void Start()
