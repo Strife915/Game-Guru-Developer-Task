@@ -86,5 +86,11 @@ namespace GameGuruDevChallange.Spawners
 
             _spawnedBlocks.Clear();
         }
+
+        public void SetSpawnPointOnLevelComplete()
+        {
+            _spawnPoint.position = new Vector3(_spawnPoint.position.x, _spawnPoint.position.y, _spawnPoint.position.z + 4);
+            ClickFacade.Instance.SetCurrentBlockSize(_firstBlockTransform.localScale.x);
+        }
     }
 }

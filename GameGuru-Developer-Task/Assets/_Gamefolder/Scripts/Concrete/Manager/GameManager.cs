@@ -8,7 +8,7 @@ namespace GameGuruDevChallange.Managers
     public class GameManager : SingletonMonoDestroy<GameManager>
     {
         [SerializeField] GameObject _clickFacadeGameObject;
-        [SerializeField] GameEvent _gameRestartEvent, _gameEndEvent;
+        [SerializeField] GameEvent _gameRestartEvent, _gameEndEvent, _levelCompleteEvent;
         public bool IsGameEnd { get; private set; }
         public bool IsLevelComplate { get; private set; }
 
@@ -39,6 +39,17 @@ namespace GameGuruDevChallange.Managers
         public void PublishGameEnd()
         {
             _gameEndEvent.InvokeEvents();
+        }
+
+        public void LevelComplete()
+        {
+            _levelCompleteEvent.InvokeEvents();
+        }
+
+        public void ResumeGame()
+        {
+            IsLevelComplate = false;
+            _clickFacadeGameObject.SetActive(true);
         }
 
         public void RestartGame()

@@ -1,3 +1,4 @@
+using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
@@ -7,5 +8,6 @@ public class PlayerCelebrateArea : MonoBehaviour
     {
         if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
         playerFacade.ChangePlayerToCelebrate();
+        GameManager.Instance.LevelComplete();
     }
 }

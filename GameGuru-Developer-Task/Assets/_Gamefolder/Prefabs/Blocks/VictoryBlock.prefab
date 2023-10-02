@@ -220,14 +220,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCelebrateArea
       objectReference: {fileID: 0}
-    - target: {fileID: 1234179245553126882, guid: a690fd71d3d1b0a4fb7871a6d57f7df6, type: 3}
-      propertyPath: m_Size.z
-      value: 0.7494993
-      objectReference: {fileID: 0}
-    - target: {fileID: 1234179245553126882, guid: a690fd71d3d1b0a4fb7871a6d57f7df6, type: 3}
-      propertyPath: m_Center.z
-      value: 0.12525032
-      objectReference: {fileID: 0}
     - target: {fileID: 1234179245553126884, guid: a690fd71d3d1b0a4fb7871a6d57f7df6, type: 3}
       propertyPath: m_RootOrder
       value: 2
