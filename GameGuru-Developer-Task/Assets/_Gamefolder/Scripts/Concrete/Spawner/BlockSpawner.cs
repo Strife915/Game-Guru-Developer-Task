@@ -68,6 +68,7 @@ namespace GameGuruDevChallange.Spawners
 
         public void ResetBlocks()
         {
+            _isRight = false;
             SpawnCount = 0;
             _lastBlockTransform = null;
             _spawnPoint.position = _initialSpawnPosition;
