@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 411819349}
   - component: {fileID: 384119384}
   - component: {fileID: 384119383}
+  - component: {fileID: 575890314}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -80,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 5014623896691051362}
+  _rigidbody: {fileID: 384119384}
   _moverAttributesSo: {fileID: 11400000, guid: 8651879685fc7d441a210202d58c0b2a, type: 2}
   _playerMoveTarget: {fileID: 0}
 --- !u!54 &384119384
@@ -112,6 +114,38 @@ CapsuleCollider:
   m_Height: 1.2300551
   m_Direction: 1
   m_Center: {x: 0, y: 0.6037687, z: 0}
+--- !u!114 &575890314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282273740994345854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627b6022cece1cc46a02c8ae4c4f9d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
+  _untiyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 411819349}
+        m_TargetAssemblyTypeName: GameGuruDevChallange.Patterns.Facade.PlayerFacade,
+          Assembly-CSharp
+        m_MethodName: ResetPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _untiyEventObject:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1512383142276904691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -645,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: c69fba8e89651054a8e17e8e58f2b3d4, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6000407479487422213, guid: c69fba8e89651054a8e17e8e58f2b3d4, type: 3}
       propertyPath: m_LocalPosition.x

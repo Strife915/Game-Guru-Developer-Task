@@ -488,54 +488,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &575890309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1282273740994345854, guid: a147d86cfeb496f4489f51bd1b4cc164, type: 3}
-  m_PrefabInstance: {fileID: 1282273740852078125}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &575890312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 411819349, guid: a147d86cfeb496f4489f51bd1b4cc164, type: 3}
-  m_PrefabInstance: {fileID: 1282273740852078125}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575890309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb01e1c92e5665419ecc6009db1c187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &575890314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575890309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627b6022cece1cc46a02c8ae4c4f9d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
-  _untiyEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 575890312}
-        m_TargetAssemblyTypeName: GameGuruDevChallange.Patterns.Facade.PlayerFacade,
-          Assembly-CSharp
-        m_MethodName: ResetPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _untiyEventObject:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
