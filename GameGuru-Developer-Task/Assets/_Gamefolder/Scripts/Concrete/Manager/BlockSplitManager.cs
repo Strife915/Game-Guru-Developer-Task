@@ -8,7 +8,7 @@ namespace GameGuruDevChallange.Managers
     {
         float _tolarance = .3f;
         LevelManager _levelManager;
-        int _splitCount;
+        int _successCount;
         public Transform LastBlock { get; set; }
         public Transform MovingBlock { get; set; }
 
@@ -35,7 +35,7 @@ namespace GameGuruDevChallange.Managers
                 ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
                 //This line works only this scale values (+2) value should be calculated from mesh size
                 ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
-                IncreaseSplitCount();
+                IncreaseSuccessCount();
                 CheckLevelComplete();
                 return;
             }
@@ -46,7 +46,7 @@ namespace GameGuruDevChallange.Managers
         public void ResetLevel()
         {
             _levelManager.ResetLevel();
-            _splitCount = 0;
+            _successCount = 0;
         }
 
         void SplitBlock(float overFlow, float direction)
@@ -74,23 +74,23 @@ namespace GameGuruDevChallange.Managers
 
             ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
             ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
-            IncreaseSplitCount();
+            IncreaseSuccessCount();
             CheckLevelComplete();
         }
 
-        void IncreaseSplitCount()
+        void IncreaseSuccessCount()
         {
-            _splitCount++;
+            _successCount++;
         }
 
         void CheckLevelComplete()
         {
-            if (_splitCount >= _levelManager.CurrentCountForSuccess)
+            if (_successCount >= _levelManager.CurrentCountForSuccess)
             {
                 Debug.Log("Level complete");
                 GameManager.Instance.CompleteLevel();
                 _levelManager.LevelUp();
-                _splitCount = 0;
+                _successCount = 0;
                 ClickFacade.Instance.SetVictoryPlatformPosition(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + MovingBlock.localScale.z));
                 ClickFacade.Instance.SetPlayerMoveTargetToCelebrateArea();
             }
