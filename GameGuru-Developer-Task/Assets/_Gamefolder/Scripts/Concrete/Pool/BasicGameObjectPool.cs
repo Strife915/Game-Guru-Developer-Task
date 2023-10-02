@@ -10,7 +10,7 @@ namespace GameGuruDevChallange.Patterns
         public GameObject prefab;
         public int poolSize = 10;
 
-        Queue<GameObject> objectPool = new Queue<GameObject>();
+        protected Queue<GameObject> objectPool = new Queue<GameObject>();
 
         void Start()
         {
@@ -32,7 +32,6 @@ namespace GameGuruDevChallange.Patterns
             if (objectPool.Any())
             {
                 GameObject obj = objectPool.Dequeue();
-                obj.SetActive(true);
                 return obj;
             }
 

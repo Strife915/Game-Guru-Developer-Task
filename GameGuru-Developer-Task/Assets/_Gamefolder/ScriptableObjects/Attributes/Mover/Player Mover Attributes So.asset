@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3b3b79ed3a3d643b588884f453e788, type: 3}
   m_Name: Player Mover Attributes So
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeed: 7

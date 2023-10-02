@@ -13,6 +13,7 @@ namespace GameGuruDevChallange.Spawners
         [SerializeField] GameObject _blockPrefab;
         [SerializeField] float _offset = 7f;
         [SerializeField] Transform _spawnPoint, _firstBlockTransform;
+        LevelManager _levelManager;
         Transform _lastBlockTransform;
         float _prefabLength;
         bool _isRight;
@@ -26,6 +27,7 @@ namespace GameGuruDevChallange.Spawners
             var prefabRenderer = _blockPrefab.GetComponentInChildren<MeshRenderer>();
             _prefabLength = prefabRenderer != null ? prefabRenderer.bounds.size.z : 0f;
             _spawnedBlocks = new List<GameObject>();
+            _levelManager = new LevelManager();
         }
 
         public void Spawn()
@@ -40,7 +42,15 @@ namespace GameGuruDevChallange.Spawners
 
                 _spawnPoint.position = forwardSpawnPosition;
                 BlockController block = BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).GetObjectFromPool().GetComponent<BlockController>();
+                block.transform.position = forwardSpawnPosition;
+                block.gameObject.SetActive(true);
                 _spawnedBlocks.Add(block.gameObject);
+                if (SpawnCount == _levelManager.CurrentCountForSuccess)
+                {
+                    Debug.Log("Level complete");
+                    return;
+                }
+
                 if (SpawnCount > 0)
                 {
                     float lastBlockScale = ClickFacade.Instance.GetCurrentBlockSize();
@@ -55,7 +65,6 @@ namespace GameGuruDevChallange.Spawners
                     ClickFacade.Instance.SetSplitManagerBlocks(_lastBlockTransform, block.transform);
                 }
 
-                block.transform.position = forwardSpawnPosition;
 
                 _spawnPoint.position = new Vector3(0, 0, _spawnPoint.position.z);
                 _isRight = !_isRight;
@@ -75,10 +84,13 @@ namespace GameGuruDevChallange.Spawners
             _lastBlockTransform = null;
             _spawnPoint.position = _initialSpawnPosition;
             ClickFacade.Instance.SetCurrentBlockSize(_firstBlockTransform.localScale.x);
+            ClickFacade.Instance.ResetPlayerMoveTarget();
             foreach (var o in _spawnedBlocks)
             {
                 BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(o);
             }
+
+            _spawnedBlocks.Clear();
         }
     }
 }

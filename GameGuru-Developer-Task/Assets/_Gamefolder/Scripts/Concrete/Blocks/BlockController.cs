@@ -1,3 +1,5 @@
+using System;
+using Cysharp.Threading.Tasks;
 using GameGuruDevChallange.Abstract.Movers;
 using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Mover;
@@ -11,6 +13,7 @@ public class BlockController : MonoBehaviour
     IMoverAttributes _moverAttributes => _moverAttributesSo;
     IMover _mover;
     public IMover Mover => _mover;
+    Vector3 _initialScale;
 
     void Awake()
     {
@@ -18,19 +21,22 @@ public class BlockController : MonoBehaviour
         _mover = new BlockMover(_moverAttributesSo);
     }
 
+
     void OnEnable()
     {
+        _initialScale = transform.localScale;
         _meshRenderer.material = BlockMaterialManager.Instance.GetRandomMaterial();
-    }
-
-    void Start()
-    {
         Vector3 currentPosition = transform.position;
         bool isLeftBlock = currentPosition.x < 0;
         Vector3 targetPosition = currentPosition;
-
         targetPosition.x = isLeftBlock ? 7 : -7;
-
         _mover.Move(transform, targetPosition);
+    }
+
+
+    void OnDisable()
+    {
+        transform.localScale = _initialScale;
+        _mover.StopMovement();
     }
 }

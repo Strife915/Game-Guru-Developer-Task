@@ -66,6 +66,7 @@ namespace GameGuruDevChallange.Managers
         void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)
         {
             var cube = BlockDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).GetObjectFromPool();
+            cube.gameObject.SetActive(true);
             MeshRenderer cubeMesh = cube.GetComponentInChildren<MeshRenderer>();
             cubeMesh.material = BlockMaterialManager.Instance.GetLastMaterial();
             cube.transform.localScale = new Vector3(fallingBlockSize, MovingBlock.localScale.y, MovingBlock.localScale.z);

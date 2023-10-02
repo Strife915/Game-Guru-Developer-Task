@@ -3,7 +3,6 @@ using GameGuruDevChallange.Abstract.Spawners;
 using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Spawners;
 using RoddGames.Abstracts.Patterns;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns.Facade
@@ -16,11 +15,13 @@ namespace GameGuruDevChallange.Patterns.Facade
         IBlockSplitManager _blockSplitManager;
         IBlockStoper _blockStoper;
         IBlockSizeHolder _blockSizeHolder;
+        Vector3 _initialPlayerMoveTarget;
 
 
         void Awake()
         {
             SetSingleton(this);
+            _initialPlayerMoveTarget = _playerMoveTarget.transform.position;
             _blockSplitManager = new BlockSplitManager();
             _blockStoper = new BlockStoper();
             _blockSizeHolder = new BlockSizeHolder();
@@ -50,10 +51,11 @@ namespace GameGuruDevChallange.Patterns.Facade
             _playerMoveTarget.ChangePosition(newPosition);
         }
 
-        public void SendPlayerToDeath()
+        public void ResetPlayerMoveTarget()
         {
-            //PlayerFacade.Instance._playerMoveTarget.SendPlayerToDeath();
+            _playerMoveTarget.transform.position = _initialPlayerMoveTarget;
         }
+
 
         public void SetSplitManagerBlocks(Transform lastBlock, Transform movingBlock)
         {

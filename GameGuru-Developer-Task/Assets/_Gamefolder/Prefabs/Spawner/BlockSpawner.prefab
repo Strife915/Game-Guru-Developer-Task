@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blockPrefab: {fileID: 2805653552299686845, guid: 46956ad154fd1d44d9e631ac60f68e60, type: 3}
-  _offset: 10
+  _offset: 7
   _spawnPoint: {fileID: 0}
   _firstBlockTransform: {fileID: 0}
   _spawnedBlocks: []

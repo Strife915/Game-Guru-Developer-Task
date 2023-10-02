@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2805653552299686845, guid: 46956ad154fd1d44d9e631ac60f68e60, type: 3}
-  poolSize: 10
+  poolSize: 3
