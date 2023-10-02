@@ -32,6 +32,7 @@ namespace GameGuruDevChallange.Managers
 
             if (Mathf.Abs(overflowAmount) < _tolarance)
             {
+                SoundManager.Instance.CombomPlay(SoundType.ComboSound);
                 MovingBlock.position = new Vector3(LastBlock.position.x, LastBlock.position.y, MovingBlock.position.z);
                 ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
                 //This line works only this scale values (+2) value should be calculated from mesh size
@@ -74,6 +75,7 @@ namespace GameGuruDevChallange.Managers
                 return;
             }
 
+            SoundManager.Instance.SingleShot(SoundType.FailSound);
             ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
             ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
             IncreaseSuccessCount();

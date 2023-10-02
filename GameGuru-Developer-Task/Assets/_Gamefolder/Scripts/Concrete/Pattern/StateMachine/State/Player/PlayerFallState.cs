@@ -1,4 +1,5 @@
-﻿using GameGuruDevChallange.Managers;
+﻿using GameGuruDevChallange.Enums;
+using GameGuruDevChallange.Managers;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns.StateMachine
@@ -17,6 +18,7 @@ namespace GameGuruDevChallange.Patterns.StateMachine
             base.Enter();
             PushPlayer();
             GameManager.Instance.PublishGameEnd();
+            SoundManager.Instance.SingleShot(SoundType.FallSound);
         }
 
         void PushPlayer()
