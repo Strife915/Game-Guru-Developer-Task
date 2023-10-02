@@ -43,6 +43,12 @@ namespace GameGuruDevChallange.Managers
             _stateMachine.ChangeState(_playerFallState);
         }
 
+        public void MakePlayerToFallFromIdle()
+        {
+            if (_stateMachine.CurrentState == _playerIdleState)
+                _stateMachine.ChangeState(_playerFallState);
+        }
+
         public void ChangePlayerToCelebrate()
         {
             _stateMachine.ChangeState(_playerCelebrateState);

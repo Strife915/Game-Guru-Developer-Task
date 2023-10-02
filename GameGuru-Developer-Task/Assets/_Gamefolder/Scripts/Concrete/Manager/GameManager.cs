@@ -20,7 +20,7 @@ namespace GameGuruDevChallange.Managers
         public void StartGame()
         {
             _clickFacadeGameObject.SetActive(true);
-            PlayerFacade.Instance.ChangePlayerToRun();
+            PlayerController.Instance.ChangePlayerToRun();
         }
 
         public void EndGame()

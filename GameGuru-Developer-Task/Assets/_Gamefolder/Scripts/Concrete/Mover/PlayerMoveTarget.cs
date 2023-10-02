@@ -5,7 +5,7 @@ public class PlayerMoveTarget : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
+        if (!other.TryGetComponent(out PlayerController playerFacade)) return;
         playerFacade.ChangePlayerToIdleState();
     }
 

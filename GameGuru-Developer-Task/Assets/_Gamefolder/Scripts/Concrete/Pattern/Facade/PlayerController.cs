@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns.Facade
 {
-    public class PlayerFacade : SingletonMonoDestroy<PlayerFacade>
+    public class PlayerController : SingletonMonoDestroy<PlayerController>
     {
         [SerializeField] Animator _playerAnimator;
         [SerializeField] Rigidbody _rigidbody;
@@ -31,6 +31,11 @@ namespace GameGuruDevChallange.Patterns.Facade
         public void ChangePlayerToRun()
         {
             _stateManager.ChangePlayerToRun();
+        }
+
+        public void ChangePlayerToFall()
+        {
+            _stateManager.MakePlayerToFallFromIdle();
         }
 
         public void ChangePlayerToCelebrate()

@@ -14,7 +14,7 @@ namespace GameGuruDevChallange.Managers
 
         void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
+            if (!other.TryGetComponent(out PlayerController playerFacade)) return;
             playerFacade.ChangePlayerToCelebrate();
             GameManager.Instance.LevelComplete();
         }

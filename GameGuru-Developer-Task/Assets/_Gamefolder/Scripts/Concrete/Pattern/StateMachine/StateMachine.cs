@@ -4,24 +4,25 @@ namespace GameGuruDevChallange.Patterns.StateMachine
 {
     public class StateMachine
     {
-        IState currentState;
+        IState _currentState;
+        public IState CurrentState => _currentState;
 
         public void ChangeState(IState newState)
         {
-            if (currentState != null)
+            if (_currentState != null)
             {
-                currentState.Exit();
+                _currentState.Exit();
             }
 
-            currentState = newState;
-            currentState.Enter();
+            _currentState = newState;
+            _currentState.Enter();
         }
 
         public void Update()
         {
-            if (currentState != null)
+            if (_currentState != null)
             {
-                currentState.Update();
+                _currentState.Update();
             }
         }
     }

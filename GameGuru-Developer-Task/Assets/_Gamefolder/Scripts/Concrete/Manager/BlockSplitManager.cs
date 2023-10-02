@@ -26,6 +26,7 @@ namespace GameGuruDevChallange.Managers
                 SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
                 BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
                 GameManager.Instance.EndGame();
+                PlayerController.Instance.ChangePlayerToFall();
                 return;
             }
 
@@ -66,9 +67,10 @@ namespace GameGuruDevChallange.Managers
 
             if (MovingBlock.localScale.x < 0.2f)
             {
+                Debug.Log("1");
                 GameManager.Instance.EndGame();
                 BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
-                SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
+                SpawnDropCube(MovingBlock.position.x, .2f);
                 return;
             }
 
@@ -99,11 +101,11 @@ namespace GameGuruDevChallange.Managers
         void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)
         {
             var cube = BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).GetObjectFromPool();
-            cube.gameObject.SetActive(true);
             MeshRenderer cubeMesh = cube.GetComponentInChildren<MeshRenderer>();
             cubeMesh.material = BlockMaterialManager.Instance.GetLastMaterial();
             cube.transform.localScale = new Vector3(fallingBlockSize, MovingBlock.localScale.y, MovingBlock.localScale.z);
             cube.transform.position = new Vector3(fallingBlockXPosition, MovingBlock.position.y, MovingBlock.position.z);
+            cube.gameObject.SetActive(true);
         }
     }
 }
