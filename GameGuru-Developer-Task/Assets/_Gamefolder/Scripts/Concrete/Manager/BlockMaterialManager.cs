@@ -1,4 +1,3 @@
-using System;
 using GameGuruDevChallange.ScriptableObjects;
 using RoddGames.Abstracts.Patterns;
 using UnityEngine;
@@ -20,6 +19,11 @@ namespace GameGuruDevChallange.Managers
         {
             int number = GetRandomMaterialIndex();
             return _materialContainerSo.Materials[number];
+        }
+
+        public Material GetLastMaterial()
+        {
+            return _materialContainerSo.Materials[_lastMaterialIndex];
         }
 
         public int GetRandomMaterialIndex()

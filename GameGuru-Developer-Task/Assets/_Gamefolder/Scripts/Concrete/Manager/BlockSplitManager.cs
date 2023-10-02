@@ -53,6 +53,8 @@ public class BlockSplitManager : IBlockSplitManager
     void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)
     {
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        MeshRenderer cubeMesh = cube.GetComponent<MeshRenderer>();
+        cubeMesh.material = BlockMaterialManager.Instance.GetLastMaterial();
         cube.transform.localScale = new Vector3(fallingBlockSize, MovingBlock.localScale.y, MovingBlock.localScale.z);
         cube.transform.position = new Vector3(fallingBlockXPosition, MovingBlock.position.y, MovingBlock.position.z);
         cube.AddComponent<Rigidbody>();
