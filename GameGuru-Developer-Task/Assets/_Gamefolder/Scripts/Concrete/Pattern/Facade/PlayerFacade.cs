@@ -33,6 +33,10 @@ namespace GameGuruDevChallange.Patterns.Facade
             _stateManager.ChangePlayerToRun();
         }
 
+        public void ChangePlayerToCelebrate()
+        {
+            _stateManager.ChangePlayerToCelebrate();
+        }
 
         void Update()
         {

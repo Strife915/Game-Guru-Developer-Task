@@ -1,17 +1,21 @@
 using GameGuruDevChallange.Enums;
-using GameGuruDevChallange.Managers;
-using GameGuruDevChallange.Patterns;
 using GameGuruDevChallange.Patterns.Facade;
-using RoddGames.Abstracts.Patterns;
 using UnityEngine;
 
 namespace GameGuruDevChallange.Managers
 {
     public class BlockSplitManager : IBlockSplitManager
     {
+        float _tolarance = .3f;
+        LevelManager _levelManager;
+        int _splitCount;
         public Transform LastBlock { get; set; }
         public Transform MovingBlock { get; set; }
-        float _tolarance = .3f;
+
+        public BlockSplitManager()
+        {
+            _levelManager = new LevelManager();
+        }
 
         public void CalculateForfeit()
         {
@@ -29,7 +33,10 @@ namespace GameGuruDevChallange.Managers
             {
                 MovingBlock.position = new Vector3(LastBlock.position.x, LastBlock.position.y, MovingBlock.position.z);
                 ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+                //This line works only this scale values (+2) value should be calculated from mesh size
                 ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
+                IncreaseSplitCount();
+                CheckLevelComplete();
                 return;
             }
 
@@ -61,6 +68,26 @@ namespace GameGuruDevChallange.Managers
 
             ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
             ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
+            IncreaseSplitCount();
+            CheckLevelComplete();
+        }
+
+        void IncreaseSplitCount()
+        {
+            _splitCount++;
+        }
+
+        void CheckLevelComplete()
+        {
+            if (_splitCount >= _levelManager.CurrentCountForSuccess)
+            {
+                Debug.Log("Level complete");
+                GameManager.Instance.CompleteLevel();
+                _levelManager.LevelUp();
+                _splitCount = 0;
+                ClickFacade.Instance.SetVictoryPlatformPosition(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + MovingBlock.localScale.z));
+                ClickFacade.Instance.SetPlayerMoveTargetToCelebrateArea();
+            }
         }
 
         void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)

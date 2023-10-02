@@ -2,7 +2,7 @@ namespace GameGuruDevChallange.Managers
 {
     public class LevelManager
     {
-        int _baseCounterForSuccess = 8;
+        int _baseCounterForSuccess = 4;
         int _levelInterval = 2;
         int _level;
         public int CurrentCountForSuccess => _baseCounterForSuccess + (_level * _levelInterval);

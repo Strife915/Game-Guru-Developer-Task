@@ -2,7 +2,6 @@
 using GameGuruDevChallange.Abstract.Spawners;
 using GameGuruDevChallange.Enums;
 using GameGuruDevChallange.Managers;
-using GameGuruDevChallange.Patterns;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
@@ -13,7 +12,6 @@ namespace GameGuruDevChallange.Spawners
         [SerializeField] GameObject _blockPrefab;
         [SerializeField] float _offset = 7f;
         [SerializeField] Transform _spawnPoint, _firstBlockTransform;
-        LevelManager _levelManager;
         Transform _lastBlockTransform;
         float _prefabLength;
         bool _isRight;
@@ -27,7 +25,6 @@ namespace GameGuruDevChallange.Spawners
             var prefabRenderer = _blockPrefab.GetComponentInChildren<MeshRenderer>();
             _prefabLength = prefabRenderer != null ? prefabRenderer.bounds.size.z : 0f;
             _spawnedBlocks = new List<GameObject>();
-            _levelManager = new LevelManager();
         }
 
         public void Spawn()
@@ -40,16 +37,13 @@ namespace GameGuruDevChallange.Spawners
 
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
+
                 _spawnPoint.position = forwardSpawnPosition;
                 BlockController block = BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).GetObjectFromPool().GetComponent<BlockController>();
                 block.transform.position = forwardSpawnPosition;
                 block.gameObject.SetActive(true);
                 _spawnedBlocks.Add(block.gameObject);
-                if (SpawnCount == _levelManager.CurrentCountForSuccess)
-                {
-                    Debug.Log("Level complete");
-                    return;
-                }
+
 
                 if (SpawnCount > 0)
                 {

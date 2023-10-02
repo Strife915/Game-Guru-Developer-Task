@@ -42,5 +42,10 @@ namespace GameGuruDevChallange.Managers
         {
             _stateMachine.ChangeState(_playerFallState);
         }
+
+        public void ChangePlayerToCelebrate()
+        {
+            _stateMachine.ChangeState(_playerCelebrateState);
+        }
     }
 }

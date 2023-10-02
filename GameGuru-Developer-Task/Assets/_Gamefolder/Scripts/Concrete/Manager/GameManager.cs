@@ -10,6 +10,7 @@ namespace GameGuruDevChallange.Managers
         [SerializeField] GameObject _clickFacadeGameObject;
         [SerializeField] GameEvent _gameRestartEvent, _gameEndEvent;
         public bool IsGameEnd { get; private set; }
+        public bool IsLevelComplate { get; private set; }
 
         void Awake()
         {
@@ -27,6 +28,12 @@ namespace GameGuruDevChallange.Managers
             _clickFacadeGameObject.SetActive(false);
             PublishGameEnd();
             IsGameEnd = true;
+        }
+
+        public void CompleteLevel()
+        {
+            IsLevelComplate = true;
+            _clickFacadeGameObject.SetActive(false);
         }
 
         public void PublishGameEnd()

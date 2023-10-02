@@ -11,6 +11,7 @@ namespace GameGuruDevChallange.Patterns.Facade
     {
         [SerializeField] BlockSpawner _concreteBlockSpawner;
         [SerializeField] PlayerMoveTarget _playerMoveTarget;
+        [SerializeField] Transform _victoryPlatform;
         ISpawner _blockSpawner => _concreteBlockSpawner;
         IBlockSplitManager _blockSplitManager;
         IBlockStoper _blockStoper;
@@ -38,7 +39,7 @@ namespace GameGuruDevChallange.Patterns.Facade
             {
                 _blockStoper.Stop();
                 _blockSplitManager.CalculateForfeit();
-                if (!GameManager.Instance.IsGameEnd)
+                if (!GameManager.Instance.IsGameEnd && !GameManager.Instance.IsLevelComplate)
                 {
                     PlayerFacade.Instance.ChangePlayerToRun();
                     _blockSpawner.Spawn();
@@ -46,9 +47,21 @@ namespace GameGuruDevChallange.Patterns.Facade
             }
         }
 
+        public void SetVictoryPlatformPosition(Vector3 newPosition)
+        {
+            _victoryPlatform.position = newPosition;
+        }
+
         public void SetPlayerNewMoveTarget(Vector3 newPosition)
         {
             _playerMoveTarget.ChangePosition(newPosition);
+        }
+
+        public void SetPlayerMoveTargetToCelebrateArea()
+        {
+            Vector3 currentPlayerMoveTargetPos = _playerMoveTarget.transform.position;
+            _playerMoveTarget.transform.position = new Vector3(currentPlayerMoveTargetPos.x, currentPlayerMoveTargetPos.y, _victoryPlatform.transform.position.z);
+            PlayerFacade.Instance.ChangePlayerToRun();
         }
 
         public void ResetPlayerMoveTarget()
