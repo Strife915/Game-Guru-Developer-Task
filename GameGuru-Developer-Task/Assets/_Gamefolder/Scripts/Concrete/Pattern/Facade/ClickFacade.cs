@@ -17,6 +17,7 @@ namespace GameGuruDevChallange.Patterns.Facade
         IBlockStoper _blockStoper;
         IBlockSizeHolder _blockSizeHolder;
         Vector3 _initialPlayerMoveTarget;
+        bool _isFirstClickAfterLevelComplete;
 
 
         void Awake()
@@ -62,14 +63,9 @@ namespace GameGuruDevChallange.Patterns.Facade
             Vector3 currentPlayerMoveTargetPos = _playerMoveTarget.transform.position;
             _playerMoveTarget.transform.position = new Vector3(currentPlayerMoveTargetPos.x, currentPlayerMoveTargetPos.y, _victoryPlatform.transform.position.z);
             PlayerController.Instance.ChangePlayerToRun();
-            ResetSizeOnLevelComplete();
+            _isFirstClickAfterLevelComplete = true;
         }
 
-        public void ResetSizeOnLevelComplete()
-        {
-            _blockSizeHolder.CurrentScale = _victoryPlatform.localScale.x;
-            _blockSplitManager.LastBlock = _victoryPlatform;
-        }
 
         public void ResetPlayerMoveTarget()
         {
@@ -80,9 +76,11 @@ namespace GameGuruDevChallange.Patterns.Facade
 
         public void SetSplitManagerBlocks(Transform lastBlock, Transform movingBlock)
         {
-            _blockSplitManager.LastBlock = lastBlock;
+            _blockSplitManager.LastBlock = _isFirstClickAfterLevelComplete ? _victoryPlatform : lastBlock;
             _blockSplitManager.MovingBlock = movingBlock;
+            _isFirstClickAfterLevelComplete = false;
         }
+
 
         public void SetBlockStoperBlock(IMover mover)
         {
