@@ -87,7 +87,6 @@ namespace GameGuruDevChallange.Managers
                 _splitCount = 0;
                 ClickFacade.Instance.SetVictoryPlatformPosition(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + MovingBlock.localScale.z));
                 ClickFacade.Instance.SetPlayerMoveTargetToCelebrateArea();
-                //ClickFacade.Instance.SetCurrentBlockSize();
             }
         }
 

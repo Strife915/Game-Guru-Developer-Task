@@ -62,6 +62,7 @@ namespace GameGuruDevChallange.Patterns.Facade
             Vector3 currentPlayerMoveTargetPos = _playerMoveTarget.transform.position;
             _playerMoveTarget.transform.position = new Vector3(currentPlayerMoveTargetPos.x, currentPlayerMoveTargetPos.y, _victoryPlatform.transform.position.z);
             PlayerFacade.Instance.ChangePlayerToRun();
+            _blockSplitManager.LastBlock = _victoryPlatform;
         }
 
         public void ResetPlayerMoveTarget()
