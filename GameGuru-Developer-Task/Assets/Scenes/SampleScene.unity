@@ -1067,10 +1067,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClickFacade
       objectReference: {fileID: 0}
-    - target: {fileID: 1566607806375204834, guid: 4527df82a8d14cc46a6cdf8c546123b4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1566607806375204844, guid: 4527df82a8d14cc46a6cdf8c546123b4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1132,18 +1128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2568454111882011709, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
-      propertyPath: m_FollowOffset.x
-      value: 7.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568454111882011709, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 27.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568454111882011709, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -22.4
-      objectReference: {fileID: 0}
     - target: {fileID: 2568454112788205348, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
       propertyPath: m_Name
       value: CM vcam1
@@ -1375,14 +1359,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4729068084611500359, guid: f3e1b921e7c5d2f46adbdff14466c9cd, type: 3}
-      propertyPath: _gameEndEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a5278dc1a470e347986fd429bc66eeb, type: 2}
-    - target: {fileID: 4729068084611500359, guid: f3e1b921e7c5d2f46adbdff14466c9cd, type: 3}
-      propertyPath: _gameRestartEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
     - target: {fileID: 4729068084611500359, guid: f3e1b921e7c5d2f46adbdff14466c9cd, type: 3}
       propertyPath: _clickFacadeGameObject
       value: 

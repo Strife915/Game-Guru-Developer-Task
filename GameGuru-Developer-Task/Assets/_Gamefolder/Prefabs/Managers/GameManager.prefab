@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d9a66a23ee7314183e3d31814582f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clickFacadeGameObject: {fileID: 0}
+  _gameRestartEvent: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
+  _gameEndEvent: {fileID: 11400000, guid: 4a5278dc1a470e347986fd429bc66eeb, type: 2}
