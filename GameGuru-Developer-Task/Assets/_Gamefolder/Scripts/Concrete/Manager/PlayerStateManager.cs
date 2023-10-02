@@ -45,7 +45,7 @@ namespace GameGuruDevChallange.Managers
 
         public void MakePlayerToFallFromIdle()
         {
-            if (_stateMachine.CurrentState == _playerIdleState)
+            if (_stateMachine.CurrentState == _playerIdleState || _stateMachine.CurrentState == _playerCelebrateState)
                 _stateMachine.ChangeState(_playerFallState);
         }
 

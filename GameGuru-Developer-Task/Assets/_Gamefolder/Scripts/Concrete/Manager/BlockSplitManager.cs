@@ -68,8 +68,8 @@ namespace GameGuruDevChallange.Managers
 
             if (MovingBlock.localScale.x < 0.2f)
             {
-                Debug.Log("1");
                 GameManager.Instance.EndGame();
+                PlayerController.Instance.ChangePlayerToFall();
                 BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
                 SpawnDropCube(MovingBlock.position.x, .2f);
                 return;
