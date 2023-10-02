@@ -1,13 +1,27 @@
-using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
-public class PlayerCelebrateArea : MonoBehaviour
+namespace GameGuruDevChallange.Managers
 {
-    void OnTriggerEnter(Collider other)
+    public class PlayerCelebrateArea : MonoBehaviour
     {
-        if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
-        playerFacade.ChangePlayerToCelebrate();
-        GameManager.Instance.LevelComplete();
+        Vector3 _initialPosition;
+
+        void Awake()
+        {
+            _initialPosition = transform.position;
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (!other.TryGetComponent(out PlayerFacade playerFacade)) return;
+            playerFacade.ChangePlayerToCelebrate();
+            GameManager.Instance.LevelComplete();
+        }
+
+        public void ResetPosition()
+        {
+            transform.position = _initialPosition;
+        }
     }
 }

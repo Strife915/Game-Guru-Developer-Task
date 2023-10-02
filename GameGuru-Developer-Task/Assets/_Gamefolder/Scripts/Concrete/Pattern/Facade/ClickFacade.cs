@@ -68,6 +68,7 @@ namespace GameGuruDevChallange.Patterns.Facade
         public void ResetPlayerMoveTarget()
         {
             _playerMoveTarget.transform.position = _initialPlayerMoveTarget;
+            _blockSplitManager.ResetLevel();
         }
 
 

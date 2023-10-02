@@ -15,6 +15,7 @@ namespace GameGuruDevChallange.Spawners
         Transform _lastBlockTransform;
         float _prefabLength;
         bool _isRight;
+        int _actieveBlockCount = 8;
         public int SpawnCount { get; private set; }
         public List<GameObject> _spawnedBlocks;
         Vector3 _initialSpawnPosition;
@@ -39,7 +40,7 @@ namespace GameGuruDevChallange.Spawners
 
 
                 _spawnPoint.position = forwardSpawnPosition;
-                BlockController block = BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).GetObjectFromPool().GetComponent<BlockController>();
+                BlockController block = BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).GetObjectFromPool().GetComponent<BlockController>();
                 block.transform.position = forwardSpawnPosition;
                 block.gameObject.SetActive(true);
                 _spawnedBlocks.Add(block.gameObject);
@@ -64,6 +65,11 @@ namespace GameGuruDevChallange.Spawners
                 _isRight = !_isRight;
                 _lastBlockTransform = block.transform;
                 SpawnCount++;
+                if (SpawnCount >= _actieveBlockCount)
+                {
+                    BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(_spawnedBlocks[0]);
+                    _spawnedBlocks.RemoveAt(0);
+                }
             }
             else
             {
@@ -81,7 +87,7 @@ namespace GameGuruDevChallange.Spawners
             ClickFacade.Instance.ResetPlayerMoveTarget();
             foreach (var o in _spawnedBlocks)
             {
-                BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(o);
+                BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(o);
             }
 
             _spawnedBlocks.Clear();

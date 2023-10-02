@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameGuruDevChallange.Managers
 {
-    public class BlockDictionaryManager : SingletonMonoDestroy<BlockDictionaryManager>
+    public class BlockPoolDictionaryManager : SingletonMonoDestroy<BlockPoolDictionaryManager>
     {
         [SerializeField] BlockPool _blockPool;
         [SerializeField] FallingBlockPool _fallingBlockPool;

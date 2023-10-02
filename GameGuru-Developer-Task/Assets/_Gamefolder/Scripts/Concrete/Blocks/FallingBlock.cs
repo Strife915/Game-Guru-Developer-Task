@@ -10,7 +10,7 @@ namespace GameGuruDevChallange.Managers
         async void OnEnable()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(2));
-            BlockDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).ReturnObjectToPool(gameObject);
+            BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).ReturnObjectToPool(gameObject);
         }
     }
 }

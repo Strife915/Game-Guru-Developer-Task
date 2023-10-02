@@ -24,7 +24,7 @@ namespace GameGuruDevChallange.Managers
             if (Mathf.Abs(overflowAmount) > LastBlock.localScale.x)
             {
                 SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
-                BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
+                BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
                 GameManager.Instance.EndGame();
                 return;
             }
@@ -41,6 +41,12 @@ namespace GameGuruDevChallange.Managers
             }
 
             SplitBlock(overflowAmount, direction);
+        }
+
+        public void ResetLevel()
+        {
+            _levelManager.ResetLevel();
+            _splitCount = 0;
         }
 
         void SplitBlock(float overFlow, float direction)
@@ -61,7 +67,7 @@ namespace GameGuruDevChallange.Managers
             if (MovingBlock.localScale.x < 0.2f)
             {
                 GameManager.Instance.EndGame();
-                BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
+                BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(MovingBlock.gameObject);
                 SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
                 return;
             }
@@ -92,7 +98,7 @@ namespace GameGuruDevChallange.Managers
 
         void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)
         {
-            var cube = BlockDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).GetObjectFromPool();
+            var cube = BlockPoolDictionaryManager.Instance.GetPoolByType(BlockType.FallingBlock).GetObjectFromPool();
             cube.gameObject.SetActive(true);
             MeshRenderer cubeMesh = cube.GetComponentInChildren<MeshRenderer>();
             cubeMesh.material = BlockMaterialManager.Instance.GetLastMaterial();

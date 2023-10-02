@@ -31,9 +31,13 @@ namespace GameGuruDevChallange.Patterns
             if (objectPool.Any())
             {
                 GameObject obj = objectPool.Dequeue();
+                if (obj != null && obj.activeSelf)
+                {
+                    return Instantiate(prefab);
+                }
+
                 return obj;
             }
-
 
             GameObject newObj = Instantiate(prefab);
             return newObj;
