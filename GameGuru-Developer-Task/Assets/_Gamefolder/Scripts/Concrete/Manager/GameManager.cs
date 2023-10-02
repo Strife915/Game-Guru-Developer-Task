@@ -25,6 +25,7 @@ namespace GameGuruDevChallange.Managers
         public void EndGame()
         {
             _clickFacadeGameObject.SetActive(false);
+            PublishGameEnd();
             IsGameEnd = true;
         }
 

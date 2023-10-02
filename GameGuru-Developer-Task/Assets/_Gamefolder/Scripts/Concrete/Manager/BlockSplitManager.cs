@@ -1,4 +1,5 @@
 using GameGuruDevChallange.Managers;
+using GameGuruDevChallange.Patterns;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class BlockSplitManager : IBlockSplitManager
         float direction = overflowAmount > 0 ? 1f : -1f;
         if (Mathf.Abs(overflowAmount) > LastBlock.localScale.x)
         {
+            SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
+            BasicGameObjectPool.Instance.ReturnObjectToPool(MovingBlock.gameObject);
             GameManager.Instance.EndGame();
             return;
         }
@@ -42,12 +45,18 @@ public class BlockSplitManager : IBlockSplitManager
         float cubeEdge = MovingBlock.position.x + (newSize / 2f * direction);
         float fallingBlockXPosition = cubeEdge + fallingBlockSize / 2f * direction;
         SpawnDropCube(fallingBlockXPosition, fallingBlockSize);
-        ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
-        ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
+
+
         if (MovingBlock.localScale.x < 0.2f)
         {
             GameManager.Instance.EndGame();
+            BasicGameObjectPool.Instance.ReturnObjectToPool(MovingBlock.gameObject);
+            SpawnDropCube(MovingBlock.position.x, MovingBlock.localScale.x);
+            return;
         }
+
+        ClickFacade.Instance.SetCurrentBlockSize(MovingBlock.localScale.x);
+        ClickFacade.Instance.SetPlayerNewMoveTarget(new Vector3(MovingBlock.position.x, MovingBlock.position.y, MovingBlock.position.z + 2));
     }
 
     void SpawnDropCube(float fallingBlockXPosition, float fallingBlockSize)
