@@ -5,17 +5,12 @@ using UnityEngine;
 
 namespace GameGuruDevChallange.Patterns
 {
-    public class BasicGameObjectPool : SingletonMonoDestroy<BasicGameObjectPool>
+    public abstract class BasicGameObjectPool : MonoBehaviour
     {
         public GameObject prefab;
         public int poolSize = 10;
 
         Queue<GameObject> objectPool = new Queue<GameObject>();
-
-        void Awake()
-        {
-            SetSingleton(this);
-        }
 
         void Start()
         {

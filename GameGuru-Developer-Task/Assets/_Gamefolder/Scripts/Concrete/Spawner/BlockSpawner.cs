@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using GameGuruDevChallange.Abstract.Spawners;
+using GameGuruDevChallange.Enums;
+using GameGuruDevChallange.Managers;
 using GameGuruDevChallange.Patterns;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
@@ -37,7 +39,7 @@ namespace GameGuruDevChallange.Spawners
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
                 _spawnPoint.position = forwardSpawnPosition;
-                BlockController block = BasicGameObjectPool.Instance.GetObjectFromPool().GetComponent<BlockController>();
+                BlockController block = BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).GetObjectFromPool().GetComponent<BlockController>();
                 _spawnedBlocks.Add(block.gameObject);
                 if (SpawnCount > 0)
                 {
@@ -75,7 +77,7 @@ namespace GameGuruDevChallange.Spawners
             ClickFacade.Instance.SetCurrentBlockSize(_firstBlockTransform.localScale.x);
             foreach (var o in _spawnedBlocks)
             {
-                BasicGameObjectPool.Instance.ReturnObjectToPool(o);
+                BlockDictionaryManager.Instance.GetPoolByType(BlockType.MovingBlock).ReturnObjectToPool(o);
             }
         }
     }

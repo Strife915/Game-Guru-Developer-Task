@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8116681989699757033}
-  - component: {fileID: 8116681989699757032}
+  - component: {fileID: 433690309}
   m_Layer: 0
   m_Name: BlockPool
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8116681989699757032
+--- !u!114 &433690309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8116681989699757015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 117897afb2fc3b7478fc846038f405b3, type: 3}
+  m_Script: {fileID: 11500000, guid: dd9c512b887d4b6184f7dcd919a87257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2805653552299686845, guid: 46956ad154fd1d44d9e631ac60f68e60, type: 3}
