@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2967440644280117710}
   - component: {fileID: 2967440644280117697}
+  - component: {fileID: 1566720595}
   m_Layer: 0
   m_Name: BlockSpawner
   m_TagString: Untagged
@@ -47,3 +48,36 @@ MonoBehaviour:
   _blockPrefab: {fileID: 2805653552299686845, guid: 46956ad154fd1d44d9e631ac60f68e60, type: 3}
   _offset: 10
   _spawnPoint: {fileID: 0}
+  _firstBlockTransform: {fileID: 0}
+  _spawnedBlocks: []
+--- !u!114 &1566720595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967440644280117696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627b6022cece1cc46a02c8ae4c4f9d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
+  _untiyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2967440644280117697}
+        m_TargetAssemblyTypeName: GameGuruDevChallange.Spawners.BlockSpawner, Assembly-CSharp
+        m_MethodName: ResetBlocks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _untiyEventObject:
+    m_PersistentCalls:
+      m_Calls: []

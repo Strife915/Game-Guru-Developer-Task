@@ -1,4 +1,6 @@
-﻿using GameGuruDevChallange.Abstract.Spawners;
+﻿using System.Collections.Generic;
+using GameGuruDevChallange.Abstract.Spawners;
+using GameGuruDevChallange.Patterns;
 using GameGuruDevChallange.Patterns.Facade;
 using UnityEngine;
 
@@ -13,11 +15,15 @@ namespace GameGuruDevChallange.Spawners
         float _prefabLength;
         bool _isRight;
         public int SpawnCount { get; private set; }
+        public List<GameObject> _spawnedBlocks;
+        Vector3 _initialSpawnPosition;
 
         void Awake()
         {
+            _initialSpawnPosition = _spawnPoint.position;
             var prefabRenderer = _blockPrefab.GetComponentInChildren<MeshRenderer>();
             _prefabLength = prefabRenderer != null ? prefabRenderer.bounds.size.z : 0f;
+            _spawnedBlocks = new List<GameObject>();
         }
 
         public void Spawn()
@@ -31,7 +37,8 @@ namespace GameGuruDevChallange.Spawners
                 var forwardSpawnPosition = spawnPosition + Vector3.forward * _prefabLength;
 
                 _spawnPoint.position = forwardSpawnPosition;
-                BlockController block = Instantiate(_blockPrefab).GetComponent<BlockController>();
+                BlockController block = BasicGameObjectPool.Instance.GetObjectFromPool().GetComponent<BlockController>();
+                _spawnedBlocks.Add(block.gameObject);
                 if (SpawnCount > 0)
                 {
                     float lastBlockScale = ClickFacade.Instance.GetCurrentBlockSize();
@@ -56,6 +63,18 @@ namespace GameGuruDevChallange.Spawners
             else
             {
                 Debug.LogError("Prefab is not set!");
+            }
+        }
+
+        public void ResetBlocks()
+        {
+            SpawnCount = 0;
+            _lastBlockTransform = null;
+            _spawnPoint.position = _initialSpawnPosition;
+            ClickFacade.Instance.SetCurrentBlockSize(_firstBlockTransform.localScale.x);
+            foreach (var o in _spawnedBlocks)
+            {
+                BasicGameObjectPool.Instance.ReturnObjectToPool(o);
             }
         }
     }

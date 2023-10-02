@@ -35,6 +35,7 @@ namespace GameGuruDevChallange.Managers
 
         public void RestartGame()
         {
+            IsGameEnd = false;
             _gameRestartEvent.InvokeEvents();
         }
     }

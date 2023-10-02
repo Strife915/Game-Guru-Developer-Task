@@ -75,10 +75,5 @@ namespace GameGuruDevChallange.Patterns.Facade
         {
             return _blockSizeHolder.CurrentScale;
         }
-
-        [Button]
-        void SpawnTest()
-        {
-        }
     }
 }

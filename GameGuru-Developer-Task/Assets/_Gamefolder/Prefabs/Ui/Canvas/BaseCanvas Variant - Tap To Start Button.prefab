@@ -220,6 +220,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b30782b0003e1f4eb3cc3780bb62aa2, type: 3}
+--- !u!1 &401085485693633016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8576983620957995026, guid: 5b30782b0003e1f4eb3cc3780bb62aa2, type: 3}
+  m_PrefabInstance: {fileID: 8257174230490022378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1458979105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401085485693633016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627b6022cece1cc46a02c8ae4c4f9d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: a06489779d5d2d84787dde65eb361ce6, type: 2}
+  _untiyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7181903691132156507}
+        m_TargetAssemblyTypeName: GameGuruDevChallange.Uis.CanvasGroupContoller,
+          Assembly-CSharp
+        m_MethodName: OpenCavnas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _untiyEventObject:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &411916885603839104 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8583874149468401002, guid: 5b30782b0003e1f4eb3cc3780bb62aa2, type: 3}
@@ -235,7 +272,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1241972522361142193, guid: 5b30782b0003e1f4eb3cc3780bb62aa2, type: 3}
   m_PrefabInstance: {fileID: 8257174230490022378}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 401085485693633016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 980a2896396e4b84dac0afc27429a3a3, type: 3}
