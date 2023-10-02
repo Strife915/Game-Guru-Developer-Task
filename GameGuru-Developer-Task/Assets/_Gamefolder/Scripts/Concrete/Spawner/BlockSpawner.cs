@@ -9,7 +9,7 @@ namespace GameGuruDevChallange.Spawners
     public class BlockSpawner : MonoBehaviour, ISpawner
     {
         [SerializeField] GameObject _blockPrefab;
-        [SerializeField] float _offset = 10f;
+        [SerializeField] float _offset = 7f;
         [SerializeField] Transform _spawnPoint, _firstBlockTransform;
         Transform _lastBlockTransform;
         float _prefabLength;

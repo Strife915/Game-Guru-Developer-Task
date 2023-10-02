@@ -15,7 +15,7 @@ public class BlockController : MonoBehaviour
     void Awake()
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
-        _mover = new StackMover(_moverAttributesSo);
+        _mover = new BlockMover(_moverAttributesSo);
     }
 
     void OnEnable()
@@ -29,7 +29,7 @@ public class BlockController : MonoBehaviour
         bool isLeftBlock = currentPosition.x < 0;
         Vector3 targetPosition = currentPosition;
 
-        targetPosition.x = isLeftBlock ? 10 : -10;
+        targetPosition.x = isLeftBlock ? 7 : -7;
 
         _mover.Move(transform, targetPosition);
     }

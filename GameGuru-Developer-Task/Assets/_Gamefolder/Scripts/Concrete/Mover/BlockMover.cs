@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace GameGuruDevChallange.Mover
 {
-    public class StackMover : IMover
+    public class BlockMover : IMover
     {
         Tween _moveTween;
         public IMoverAttributes MoverAttributes { get; private set; }
 
-        public StackMover(IMoverAttributes moverAttributes)
+        public BlockMover(IMoverAttributes moverAttributes)
         {
             MoverAttributes = moverAttributes;
         }
