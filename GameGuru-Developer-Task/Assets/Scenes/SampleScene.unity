@@ -610,8 +610,8 @@ MonoBehaviour:
   m_RollDamping: 0
   m_Heading:
     m_HeadingDefinition: 2
-    m_VelocityFilterStrength: 4
-    m_HeadingBias: 0
+    m_VelocityFilterStrength: 8
+    m_HeadingBias: 18
   m_RecenterToTargetHeading:
     m_enabled: 1
     m_RecenterWaitTime: 1
@@ -1210,7 +1210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977679138}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 6.4, z: 17.5}
+  m_LocalPosition: {x: 5.4077983, y: 6.4, z: 16.64349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1479,10 +1479,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 404653519}
-    - target: {fileID: 2568454112788205351, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
-      propertyPath: m_Priority
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09cd34316f89db248a7043cb1f116357, type: 3}
 --- !u!1001 &2640970937696367426
